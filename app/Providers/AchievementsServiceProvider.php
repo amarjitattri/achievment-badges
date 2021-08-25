@@ -2,14 +2,23 @@
 
 namespace App\Providers;
 
-use App\Achievements\Types\FirstLessonWatched;
+use App\Achievements\Types;
 use Illuminate\Support\ServiceProvider;
 
 class AchievementsServiceProvider extends ServiceProvider
 {
 
     protected $achievements = [
-       FirstLessonWatched::class,
+        Types\FirstLessonWatched::class,
+        Types\FiveLessonsWatched::class,
+        Types\TenLessonsWatched::class,
+        Types\TwentyFiveLessonsWatched::class,
+        Types\FiftyLessonsWatched::class,
+        Types\FirstCommentWritten::class,
+        Types\ThreeCommentsWritten::class,
+        Types\FiveCommentsWritten::class,
+        Types\TenCommentsWritten::class,
+        Types\TwentyCommentsWritten::class,
     ];
 
     /**

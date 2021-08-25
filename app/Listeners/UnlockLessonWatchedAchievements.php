@@ -6,7 +6,7 @@ use App\Events\LessonWatched;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class UnlockAchievements
+class UnlockLessonWatchedAchievements
 {
     /**
      * Create the event listener.
@@ -29,6 +29,9 @@ class UnlockAchievements
         $this->unlockAchievementsLogic($event);
     }
 
+    /**
+     * unlock achievements logic for lesson watched
+     */
     public function unlockAchievementsLogic($event) 
     {
         $achievmentIdsUnlockForUser = app('achievements')->filter(function($achievements) use ($event) {
@@ -38,5 +41,9 @@ class UnlockAchievements
         });
         
         $event->user->achievements()->sync($achievmentIdsUnlockForUser);
+
+        //AchievementUnlocked Event
+
+        //check 
     }
 }

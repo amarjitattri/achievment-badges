@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Achievements\Types;
+
+use App\Models\Achievement;
+
+class {{CLASS}} extends AchievementsType {
+
+    public $name = '';
+    public $type = '{{TYPE}}'; //comment or lesson
+
+    public function qualifier($user)
+    {
+        //
+    }
+
+}
