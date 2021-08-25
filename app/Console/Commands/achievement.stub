@@ -6,7 +6,6 @@ use App\Models\Achievement;
 
 class {{CLASS}} extends AchievementsType {
 
-    public $name = '';
     public $value = ''; //integar
     public $type = '{{TYPE}}'; //comment or lesson or badge
 
