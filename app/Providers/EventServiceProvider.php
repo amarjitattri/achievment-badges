@@ -7,6 +7,8 @@ use App\Events\CommentWritten;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+use App\Listeners\UnlockAchievements;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -19,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
             //
         ],
         LessonWatched::class => [
-            //
+            UnlockAchievements::class,
         ],
     ];
 
