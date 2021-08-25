@@ -10,7 +10,9 @@
 Command for Create New Achievement or Badge
 
 php artisan make:achievement {{AchievementName}} {{type}}
+
 Type parameter :  lesson, comment, badge
+
 Example: php artisan make:achievement Master badge
 
 
