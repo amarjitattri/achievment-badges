@@ -21,6 +21,13 @@ class AchievementsServiceProvider extends ServiceProvider
         Types\TwentyCommentsWritten::class,
     ];
 
+    protected $badges = [
+        Types\Beginner::class,
+        Types\Intermediate::class,
+        Types\Advanced::class,
+        Types\Master::class,
+    ];
+
     /**
      * Register services.
      *
@@ -31,6 +38,12 @@ class AchievementsServiceProvider extends ServiceProvider
         $this->app->singleton('achievements', function() {
             return collect($this->achievements)->map(function($achievement) {
                 return new $achievement;
+            });
+        });
+
+        $this->app->singleton('badges', function() {
+            return collect($this->badges)->map(function($badge) {
+                return new $badge;
             });
         });
     }

@@ -12,7 +12,8 @@ abstract class AchievementsType {
     {
         $this->model = Achievement::firstOrCreate([
             'name' => $this->name(),
-            'type' => $this->type
+            'type' => $this->type,
+            'value' => $this->value
         ]);
     }
 
@@ -28,6 +29,12 @@ abstract class AchievementsType {
     public function modelKey()
     {
         return $this->model->getKey();
+    }
+
+    public function getAchievementCount($user)
+    {
+       $userAchievements = $user->achievements->groupBy('type');
+       return ( isset($userAchievements['lesson']) ? $userAchievements['lesson']->count() : 0 ) + ( isset($userAchievements['comment']) ? $userAchievements['comment']->count() : 0 );
     }
 
     abstract public function qualifier($user);

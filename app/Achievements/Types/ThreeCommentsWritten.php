@@ -8,11 +8,12 @@ use App\Models\Achievement;
 class ThreeCommentsWritten extends AchievementsType {
 
     public $name = '3 Comments Written';
-    public $type = 'watched'; //comment or lesson
+    public $type = 'comment'; //comment or lesson
+    public $value = 3;
 
     public function qualifier($user)
     {
-        if (isset($user->comments) && $user->comments->count() >= 3) {
+        if (isset($user->comments) && $user->comments->count() == $this->value) {
 
             //fired achievement unlocked event
             event(new AchievementUnlocked($this->name(), $user));

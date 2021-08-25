@@ -40,10 +40,23 @@ class UnlockLessonWatchedAchievements
             return $achievements->modelKey();
         });
         
-        $event->user->achievements()->sync($achievmentIdsUnlockForUser);
+        $event->user->achievements()->sync($achievmentIdsUnlockForUser, false);
 
-        //AchievementUnlocked Event
+        //check if new badge unlocked
+        //$this->unlockBadgesLogic($event);
+    }
 
-        //check 
+    /**
+     * unlock badges logic
+     */
+    public function unlockBadgesLogic($event)
+    {
+        $badgeIdsUnlockForUser = app('badges')->filter(function($badges) use ($event) {
+            return $badges->qualifier($event->user);
+        })->map(function($badges) {
+            return $badges->modelKey();
+        });
+        
+        $event->user->achievements()->sync($badgeIdsUnlockForUser, false);
     }
 }

@@ -42,10 +42,14 @@ class GenerateAchievementsCommand extends Command
         $find = array("{{CLASS}}", "{{TYPE}}");
         $replace   = array($this->argument('name'), $this->argument('type'));
         $stub = str_replace($find, $replace, $stub);
+
         $path = app_path('Achievements/Types/' . $this->argument('name').'.php');
 
-        file_put_contents($path, $stub);
-
-        $this->info($path. ' was created');
+        if (!file_exists($path)) {
+            file_put_contents($path, $stub);
+            $this->info($path. ' was created');
+        } else {
+            $this->info($path. ' was already exists');
+        }
     }
 }

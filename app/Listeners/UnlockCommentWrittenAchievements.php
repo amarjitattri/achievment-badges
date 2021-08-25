@@ -40,6 +40,23 @@ class UnlockCommentWrittenAchievements
             return $achievements->modelKey();
         });
         
-        $event->comment->user->achievements()->sync($achievmentIdsUnlockForUser);
+        $event->comment->user->achievements()->sync($achievmentIdsUnlockForUser, false);
+
+        //check if new badge unlocked
+        $this->unlockBadgesLogic($event);
+    }
+
+    /**
+     * unlock badges logic
+     */
+    public function unlockBadgesLogic($event)
+    {
+        $badgeIdsUnlockForUser = app('badges')->filter(function($badges) use ($event) {
+            return $badges->qualifier($event->comment->user);
+        })->map(function($badges) {
+            return $badges->modelKey();
+        });
+
+        $event->comment->user->achievements()->sync($badgeIdsUnlockForUser, false);
     }
 }
