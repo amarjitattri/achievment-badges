@@ -43,7 +43,7 @@ class UnlockLessonWatchedAchievements
         $event->user->achievements()->sync($achievmentIdsUnlockForUser, false);
 
         //check if new badge unlocked
-        //$this->unlockBadgesLogic($event);
+        $this->unlockBadgesLogic($event);
     }
 
     /**
